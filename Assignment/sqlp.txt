@@ -1,0 +1,106 @@
+-- =====================================
+-- SQL PRACTICE PROGRAM
+-- =====================================
+
+-- 1. Create a database
+CREATE DATABASE college_db;
+
+-- 2. Select the database
+USE college_db;
+
+-- 3. Delete students table if it already exists
+DROP TABLE IF EXISTS students;
+
+-- 4. Create Students table
+CREATE TABLE students(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    phone VARCHAR(15),
+    date_of_birth DATE,
+    is_active BOOLEAN DEFAULT TRUE,
+    marks DECIMAL(5,2) CHECK (marks >= 0 AND marks <= 100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 5. Display all tables
+SHOW TABLES;
+
+-- 6. Display structure of students table
+DESCRIBE students;
+
+-- 7. Insert student records
+INSERT INTO students(name,email,phone,date_of_birth,marks)
+VALUES
+('Rahul','rahul@gmail.com','9876543210','2004-05-10',91.50);
+
+INSERT INTO students(name,email,phone,date_of_birth,marks)
+VALUES
+('Priya','priya@gmail.com','9876543211','2003-08-15',88.25);
+
+INSERT INTO students(name,email,phone,date_of_birth,marks)
+VALUES
+('Arjun','arjun@gmail.com','9876543212','2002-12-05',76.75);
+
+-- 8. Display all records
+SELECT * FROM students;
+
+-- 9. Display only names and marks
+SELECT name, marks
+FROM students;
+
+-- 10. Update marks
+UPDATE students
+SET marks = 95.50
+WHERE id = 1;
+
+-- 11. Display updated table
+SELECT * FROM students;
+
+-- 12. Delete one student
+DELETE FROM students
+WHERE id = 3;
+
+-- 13. Display remaining students
+SELECT * FROM students;
+
+-- 14. Create another table
+CREATE TABLE tasks(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    description TEXT,
+    priority ENUM('LOW','MEDIUM','HIGH') DEFAULT 'MEDIUM',
+    status ENUM('PENDING','IN_PROGRESS','COMPLETED','CANCELLED') DEFAULT 'PENDING',
+    due_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    is_archived BOOLEAN DEFAULT FALSE,
+    assignee VARCHAR(100),
+    estimated_hours DECIMAL(5,2),
+    actual_hours DECIMAL(5,2)
+);
+
+-- 15. Display all tables
+SHOW TABLES;
+
+-- 16. Show tasks structure
+DESCRIBE tasks;
+
+-- 17. Insert task
+INSERT INTO tasks(title,description,priority,assignee,estimated_hours)
+VALUES(
+'Complete SQL Assignment',
+'Practice all SQL commands',
+'HIGH',
+'Rahul',
+4.50
+);
+
+-- 18. View tasks
+SELECT * FROM tasks;
+
+-- 19. Delete tasks table
+DROP TABLE IF EXISTS tasks;
+
+-- 20. Delete students table
+DROP TABLE IF EXISTS students;
