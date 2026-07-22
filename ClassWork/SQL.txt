@@ -1,0 +1,66 @@
+create database java;
+use java;
+create table orders(
+id int,
+status varchar(20) default 'PENDING',
+created_at timestamp default CURRENT_TIMESTAMP
+);
+
+insert into orders (id)
+values('1');
+insert into orders(id,status)
+values('2','completed');
+
+select * from orders;
+
+insert into orders (id,status)
+values('3','Going on');
+
+update orders
+set status='completed'
+where id=3;
+
+use java;
+CREATE TABLE students (
+id INT ,
+course_id int,
+PRIMARY KEY (id, course_id)
+);
+
+insert into students(id, course_id) values(1,1);
+insert into students(id, course_id) values(2,1);
+insert into students(id, course_id) values(3,null);
+
+select * from students;
+
+use java;
+create table students2(
+id int unique,
+email varchar(100),
+username varchar(100)
+);
+
+insert into students2(id,email,username) values('1','asd@gmail.com','asd');
+insert into students2(id,email,username) values('2','fgh@gmail.com','fgh');
+insert into students2(id,email,username) values('3','jkl@gmail.com','jkl');
+
+select * from students2;
+
+use java;
+create table orders2(
+order_id int primary key,
+customer_id int,
+foreign key (customer_id) references customers(id)
+);
+
+
+
+
+
+
+
+
+
+
+
+
